@@ -14,8 +14,12 @@ def zuzia(request):
 def Marlena(request):
     return HttpResponse("hello, Marlena!")
 
+#rendering html files with render function
+#the third argument in render function is called 'context'
 def greetings_user(request, user):
-    return HttpResponse(f"Hello, {user.capitalize()}!!")
+    return render(request, "hello/index.html", {
+        "user": user.capitalize()
+    })
 
 
 
