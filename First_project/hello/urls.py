@@ -21,5 +21,3 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("<str:user>", views.greetings_user, name="greetings")
 ]
-
-#
