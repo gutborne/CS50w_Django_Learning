@@ -3,6 +3,11 @@
 
 
 {% block body %}
+    Request GET: {{ request.GET }}<br>
+    Request POST: {{request.POST}}<br>
+    Request path: {{ request.path }}<br>
+    Request method: {{ request.method}}<br>
+    previous form result: {{ form.task }} and {{form.priority}}<br>
     <h1>Add a task</h1>
     <form action="{% url 'tasks:add_task' %}" method="post">
         {% csrf_token %}
