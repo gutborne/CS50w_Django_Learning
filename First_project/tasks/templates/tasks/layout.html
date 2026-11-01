@@ -4,6 +4,10 @@
         <title>Tasks page</title>
     </head>
     <body>
+        Request GET: {{ request.GET }}<br>
+        Request POST: {{request.POST}}<br>
+        Request path: {{ request.path }}<br>
+        Request method: {{ request.method}}<br>
         {% block body %}
         {% endblock %}   
     </body>

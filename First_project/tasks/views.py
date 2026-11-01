@@ -14,7 +14,7 @@ def index(request):
     })
 
 def add_task(request):
-    form = None
+    form = result = None
     if request.method == "POST":
         form = NewTaskForm(request.POST)
         if form.is_valid():
@@ -22,8 +22,13 @@ def add_task(request):
             for values in form.cleaned_data.values(): 
                 form_user.append(values)
             tasks.append(form_user)
+        else:
+            result = "This form contains errors. Fix them: \n"
+            return render(request, "tasks/add_task.html", {
+                "form": form,
+                "result": result
+            })
 
     return render(request, "tasks/add_task.html", {
-        "form": NewTaskForm(),
-        "result_form": form
+        "form": NewTaskForm()
     })
