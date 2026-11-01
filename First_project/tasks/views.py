@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django import forms
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
-tasks = ["Answer emails", "Create my google account", "Answer Marlena"]
+tasks = []
 class NewTaskForm(forms.Form):
     task = forms.CharField(label="New Task")
     priority = forms.IntegerField(label="priority", min_value = 1, max_value=10)
@@ -22,6 +24,7 @@ def add_task(request):
             for values in form.cleaned_data.values(): 
                 form_user.append(values)
             tasks.append(form_user)
+            return HttpResponseRedirect(reverse("tasks:index"))
         else:
             result = "This form contains errors. Fix them: \n"
             return render(request, "tasks/add_task.html", {
