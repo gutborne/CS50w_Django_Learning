@@ -25,8 +25,9 @@ def add_task(request):
             form_user = list()
             for value in form.cleaned_data.values(): 
                 form_user.append(value)
-            request.session["tasks"].append(form_user)
-            request.session.modified = True
+            curr_tasks = request.session["tasks"] 
+            curr_tasks.append(form_user)
+            request.session["tasks"] = curr_tasks
             return HttpResponseRedirect(reverse("tasks:index"))
         else:
             result = "This form contains errors. Fix them: \n"
